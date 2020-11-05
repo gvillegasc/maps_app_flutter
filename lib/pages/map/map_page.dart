@@ -31,14 +31,19 @@ class _MapPageState extends State<MapPage> {
     return Scaffold(
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[BtnLocation(), BtnMyRoute(), BtnFollowLocation()],
+          children: <Widget>[
+            BtnLocation(),
+            BtnMyRoute(),
+            BtnFollowLocation(),
+          ],
         ),
         body: Stack(
           children: [
             BlocBuilder<MyLocationBloc, MyLocationState>(
               builder: (_, state) => createMap(state),
             ),
-            SearchBar()
+            ManualMarker()
+            // SearchBar()
           ],
         ));
   }
