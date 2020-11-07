@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:maps_app/bloc/map_bloc/map_bloc.dart';
-import 'package:maps_app/pages/loading/loading_page.dart';
-import 'package:maps_app/routes/routes.dart';
 
-import 'bloc/my_location_bloc/my_location_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:maps_app/bloc/map_bloc/map_bloc.dart';
+import 'package:maps_app/bloc/my_location_bloc/my_location_bloc.dart';
+import 'package:maps_app/bloc/search_bloc/search_bloc.dart';
+
+import 'package:maps_app/routes/routes.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,12 +24,15 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => MapBloc(),
+        ),
+        BlocProvider(
+          create: (_) => SearchBloc(),
         )
       ],
       child: MaterialApp(
           title: 'Material App',
           debugShowCheckedModeBanner: false,
-          home: LoadingPage(),
+          home: homeRoute,
           routes: appRoutes),
     );
   }

@@ -16,13 +16,13 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   @override
   void initState() {
-    context.bloc<MyLocationBloc>().initTracing();
+    context.read<MyLocationBloc>().initTracing();
     super.initState();
   }
 
   @override
   void dispose() {
-    context.bloc<MyLocationBloc>().cancelTracing();
+    context.read<MyLocationBloc>().cancelTracing();
     super.dispose();
   }
 
@@ -42,8 +42,8 @@ class _MapPageState extends State<MapPage> {
             BlocBuilder<MyLocationBloc, MyLocationState>(
               builder: (_, state) => createMap(state),
             ),
-            ManualMarker()
-            // SearchBar()
+            ManualMarker(),
+            SearchBar()
           ],
         ));
   }

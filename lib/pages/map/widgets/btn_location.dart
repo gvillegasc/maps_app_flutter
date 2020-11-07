@@ -7,9 +7,9 @@ class BtnLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ignore: close_sinks
-    final mapBloc = context.bloc<MapBloc>();
+    final mapBloc = context.watch<MapBloc>();
     // ignore: close_sinks
-    final myLocationBloc = context.bloc<MyLocationBloc>();
+    final myLocationBloc = context.watch<MyLocationBloc>();
     return Container(
       margin: EdgeInsets.only(bottom: 10),
       child: CircleAvatar(

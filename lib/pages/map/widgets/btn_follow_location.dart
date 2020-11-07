@@ -7,7 +7,7 @@ class BtnFollowLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ignore: close_sinks
-    final mapBloc = context.bloc<MapBloc>();
+    final mapBloc = context.watch<MapBloc>();
     return BlocBuilder<MapBloc, MapState>(builder: (_, state) {
       return Container(
         margin: EdgeInsets.only(bottom: 10),

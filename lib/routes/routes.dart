@@ -11,4 +11,4 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   MapPage.routeName: (_) => MapPage(),
 };
 
-final String initialRoute = LoadingPage.routeName;
+final LoadingPage homeRoute = LoadingPage();
