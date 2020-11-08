@@ -9,6 +9,14 @@ class OnMarkTour extends MapEvent {}
 
 class OnFollowLocation extends MapEvent {}
 
+class OnCreateRouteStartDestination extends MapEvent {
+  final List<LatLng> routeCoords;
+  final double distance;
+  final double duration;
+
+  OnCreateRouteStartDestination(this.routeCoords, this.distance, this.duration);
+}
+
 class OnMoveMap extends MapEvent {
   final LatLng centerMap;
 

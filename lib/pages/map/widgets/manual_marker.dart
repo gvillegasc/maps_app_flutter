@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:maps_app/bloc/map_bloc/map_bloc.dart';
 import 'package:maps_app/bloc/my_location_bloc/my_location_bloc.dart';
 import 'package:maps_app/bloc/search_bloc/search_bloc.dart';
@@ -81,10 +82,11 @@ class _BuildManualMarkers extends StatelessWidget {
   void calculateDestination(BuildContext context) async {
     final trafficService = new TrafficService();
     final start = context.read<MyLocationBloc>().state.location;
-    final destination = context.read<MapBloc>().state.locationCenter;
+    // ignore: close_sinks
+    final mapBloc = context.read<MapBloc>();
 
-    final trafficResponse =
-        await trafficService.getCoordsStartDestination(start, destination);
+    final trafficResponse = await trafficService.getCoordsStartDestination(
+        start, mapBloc.state.locationCenter);
 
     final geometry = trafficResponse.routes[0].geometry;
     final duration = trafficResponse.routes[0].duration;
@@ -95,6 +97,9 @@ class _BuildManualMarkers extends StatelessWidget {
       precision: 6,
     ).decodedCoords;
 
-    final temp = points;
+    final List<LatLng> routeCoords =
+        points.map((point) => LatLng(point[0], point[1])).toList();
+
+    mapBloc.add(OnCreateRouteStartDestination(routeCoords, distance, duration));
   }
 }
